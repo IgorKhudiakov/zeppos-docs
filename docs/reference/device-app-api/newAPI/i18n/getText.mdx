@@ -7,16 +7,15 @@ Get the corresponding string from the internationalization resource file (.po) b
 ## Type
 
 ```ts
-function getText(key: Key): Result
+function getText(key: Key, ...args: array): Result
 ```
 
 ## Parameters
 
-### Key
-
-| Type                | Description              |
-| ------------------- | ------------------------ |
-| <code>string</code> | Internationalization key |
+| Property | Type                                       | Description              |
+| -------- | ------------------------------------------ | ------------------------ |
+| key      | <code>string</code>                        | Internationalization key |
+| args     | <code>string</code> or <code>number</code> | Substitution arguments   |
 
 ### Result
 
@@ -29,5 +28,15 @@ function getText(key: Key): Result
 ```js
 import { getText } from '@zos/i18n'
 
-getText('name')
+// en-US.po
+// msgid "displayInfo"
+// msgstr "Display size: %s x %s pixels"
+
+// Get the text without arguments
+getText('displayInfo')
+// result "Display size: %s x %s pixels"
+
+// Get the text with the substitution of arguments
+getText('displayInfo', device.width, device.height)
+// result "Display size: 390 x 450 pixels"
 ```
